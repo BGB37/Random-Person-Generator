@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Person Generator</title>
+</head>
+
+<body>
+    <div id="container">
+        <img src="" alt="" id="person-img">
+        <h3 id="name-surname"></h3>
+        <h4 id="age"></h4>
+        <button id="btn">Click here!</button>
+    </div>
+    <style>
+        body {
+            background-color: aqua;
+        }
+        #name-surname {
+            margin-bottom: 5px;
+        }
+
+        #age {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+        }
+        #container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            border-radius: 50%;
+            min-width: 20%;
+            object-fit: contain;
+        }
+    </style>
+    <script>
+        let body = document.querySelector('body');
+        let btn = document.getElementById("btn");
+        let nameSurname = document.getElementById("name-surname");
+        let personImg = document.getElementById("person-img");
+        let personAge = document.getElementById('age');
+        const backgroundColors = ["#EA5455", "#BBD6B8", "#8F43EE", "#66347F", "#0E8388","#E7B10A","#3E54AC","#BE6DB7","#B4E4FF", "#443C68"];
+        btn.addEventListener('click', function () {
+            fetch("https://randomuser.me/api/")
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json.results[0]);
+                    const name = json.results[0].name.first;
+                    const lastName = json.results[0].name.last;
+                    const img = json.results[0].picture.large;
+                    const age = json.results[0].dob.age;
+                    if(json.results[0].gender == "female") {
+                        personImg.style.border = "5px solid pink";
+                    } else {
+                        personImg.style.border = "5px solid blue";
+                    }
+
+                    let num = Math.floor(Math.random() * backgroundColors.length);
+                    body.style.backgroundColor = backgroundColors[num];
+                    
+
+                    nameSurname.innerHTML = `${name} ${lastName}`;
+                    personImg.src = `${img}`;
+                    personAge.innerHTML = `Age: ${age}`;
+                }
+                );
+        })
+    </script>
+</body>
+
+</html>
