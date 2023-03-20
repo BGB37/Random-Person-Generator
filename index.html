@@ -55,6 +55,12 @@
             width: 10%;
             height: 30px;
             border-radius: 5px;
+            transition-duration: 0.3s;
+        }
+
+        button:hover {
+            width: 11%;
+            height: 33px;
         }
 
         /* some comment */
@@ -86,8 +92,9 @@
 
                     let num1 = Math.floor(Math.random() * backgroundColors.length);
                     let num2 = Math.floor(Math.random() * backgroundColors.length);
+                    let degree = Math.floor(Math.random() * 360);
                     console.log(backgroundColors[num1]);
-                    btn.style.backgroundImage = `linear-gradient(${backgroundColors[num1]},${backgroundColors[num2]})`; // Channge button color.
+                    btn.style.backgroundImage = `linear-gradient(${degree}deg,${backgroundColors[num1]},${backgroundColors[num2]})`; // Channge button color.
 
 
                     nameSurname.innerHTML = `${name} ${lastName}`;
