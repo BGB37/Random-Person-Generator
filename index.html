@@ -19,6 +19,7 @@
         body {
             background-color: aqua;
         }
+
         #name-surname {
             margin-bottom: 5px;
         }
@@ -27,10 +28,12 @@
             margin-top: 0;
             margin-bottom: 5px;
         }
-        body{
+
+        body {
             width: 100vw;
             height: 100vh;
         }
+
         #container {
             width: 100vw;
             height: 100vh;
@@ -44,16 +47,17 @@
             border-radius: 50%;
             min-width: 20%;
             object-fit: contain;
+            transition-duration: 300ms;
         }
 
         button {
-            background-color: black;
             color: white;
             width: 10%;
             height: 30px;
             border-radius: 5px;
         }
-            /* some comment */
+
+        /* some comment */
     </style>
     <script>
         let body = document.querySelector('body');
@@ -61,7 +65,7 @@
         let nameSurname = document.getElementById("name-surname");
         let personImg = document.getElementById("person-img");
         let personAge = document.getElementById('age');
-        const backgroundColors = ["#EA5455", "#BBD6B8", "#8F43EE", "#66347F", "#0E8388","#E7B10A","#3E54AC","#BE6DB7","#B4E4FF", "#443C68"];
+        const backgroundColors = ["#EA5455", "#BBD6B8", "#8F43EE", "#66347F", "#0E8388", "#E7B10A", "#3E54AC", "#BE6DB7", "#B4E4FF", "#443C68"];
         btn.addEventListener('click', function () {
             fetch("https://randomuser.me/api/")
                 .then(response => response.json())
@@ -71,7 +75,7 @@
                     const lastName = json.results[0].name.last;
                     const img = json.results[0].picture.large;
                     const age = json.results[0].dob.age;
-                    if(json.results[0].gender == "female") {
+                    if (json.results[0].gender == "female") {
                         personImg.style.border = "5px solid pink";
                     } else {
                         personImg.style.border = "5px solid blue";
@@ -79,7 +83,12 @@
 
                     let num = Math.floor(Math.random() * backgroundColors.length);
                     body.style.backgroundColor = backgroundColors[num];
-                    
+
+                    let num1 = Math.floor(Math.random() * backgroundColors.length);
+                    let num2 = Math.floor(Math.random() * backgroundColors.length);
+                    console.log(backgroundColors[num1]);
+                    btn.style.backgroundImage = `linear-gradient(${backgroundColors[num1]},${backgroundColors[num2]})`; // Channge button color.
+
 
                     nameSurname.innerHTML = `${name} ${lastName}`;
                     personImg.src = `${img}`;
